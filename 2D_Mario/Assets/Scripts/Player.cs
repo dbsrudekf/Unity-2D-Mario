@@ -4,26 +4,44 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float fSpeed = 10.0f;
+    float fSpeed = 5.0f;
 
     Rigidbody rRigidbody;
     Vector3 vMovement;
     float fHorizontal;
+    SpriteRenderer spriteRenderer;
+    Animator anim;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rRigidbody = GetComponent<Rigidbody>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fHorizontal = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Horizontal"))
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+
+        if (Input.GetButtonUp("Horizontal"))
+            anim.SetBool("IsWalkingFinish", true);
+        else
+            anim.SetBool("IsWalkingFinish", false);
+        
+
+        if (rRigidbody.velocity.normalized.x == 0)
+            anim.SetBool("IsWalking", false);
+        else
+            anim.SetBool("IsWalking", true);
     }
 
     void FixedUpdate()
     {
+        fHorizontal = Input.GetAxisRaw("Horizontal");
         vMovement.Set(fHorizontal, 0.0f, 0.0f);
         vMovement = vMovement.normalized * fSpeed * Time.deltaTime;
         rRigidbody.MovePosition(transform.position + vMovement);
