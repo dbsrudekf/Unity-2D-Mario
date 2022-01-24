@@ -7064,7 +7064,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7088,7 +7088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -1.78, y: -1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18497,7 +18497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330406611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5815697, y: 2.1512465, z: -4}
+  m_LocalPosition: {x: -1.5815697, y: 2.1512465, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 776215212}
@@ -24814,9 +24814,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1753638315}
   - component: {fileID: 1753638314}
-  - component: {fileID: 1753638317}
   - component: {fileID: 1753638316}
   - component: {fileID: 1753638318}
+  - component: {fileID: 1753638319}
+  - component: {fileID: 1753638317}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Untagged
@@ -24883,7 +24884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753638313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.601666, y: -3.36, z: -2}
+  m_LocalPosition: {x: -3.601666, y: -3.36, z: -1}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -24901,6 +24902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90083fd93756aa74ab415c6228181153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPower: 8
 --- !u!54 &1753638317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24913,9 +24915,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 64
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &1753638318
 Animator:
@@ -24936,6 +24938,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1753638319
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753638313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1757606853
 GameObject:
   m_ObjectHideFlags: 0
