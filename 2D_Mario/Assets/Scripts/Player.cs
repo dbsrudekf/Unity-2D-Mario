@@ -7,8 +7,7 @@ public class Player : MonoBehaviour
     float fSpeed = 5.0f;
     public float jumpPower = 10.0f;
 
-    Rigidbody rRigidbody;
-    Vector3 vMovement;
+    Rigidbody2D rRigidbody;
     float fHorizontal;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -17,7 +16,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        rRigidbody = GetComponent<Rigidbody>();
+        rRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
@@ -25,12 +24,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButtonUp("Horizontal"))
+        {
+            rRigidbody.velocity = new Vector2(rRigidbody.velocity.normalized.x * 0.5f, rRigidbody.velocity.y);
+        }
+
         if (Input.GetButtonDown("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !anim.GetBool("IsJumping"))
         {
-            rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            anim.SetBool("IsJumping", true);
+            anim.SetBool("IsWalkingFinish", false);
         }
 
         if (Input.GetButtonUp("Horizontal"))
@@ -39,17 +45,45 @@ public class Player : MonoBehaviour
             anim.SetBool("IsWalkingFinish", false);
         
 
-        if (rRigidbody.velocity.normalized.x == 0)
+        if (Mathf.Abs(rRigidbody.velocity.x) < 0.3)
             anim.SetBool("IsWalking", false);
         else
+        {
             anim.SetBool("IsWalking", true);
+        }
+            
     }
 
     void FixedUpdate()
     {
-        fHorizontal = Input.GetAxisRaw("Horizontal");
-        vMovement.Set(fHorizontal, 0.0f, 0.0f);
-        vMovement = vMovement.normalized * fSpeed * Time.deltaTime;
-        rRigidbody.MovePosition(transform.position + vMovement);
+        float h = Input.GetAxisRaw("Horizontal");
+
+        rRigidbody.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+
+        if (rRigidbody.velocity.x > fSpeed)
+            rRigidbody.velocity = new Vector2(fSpeed, rRigidbody.velocity.y);
+        else if(rRigidbody.velocity.x < fSpeed * (-1))
+            rRigidbody.velocity = new Vector2(fSpeed * (-1), rRigidbody.velocity.y);
+
+        if(rRigidbody.velocity.y < 0)
+        {
+            Debug.DrawRay(rRigidbody.position, Vector3.down, new Color(0, 1, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 1, LayerMask.GetMask("Floor"));
+
+            if (rayHit.collider != null)
+            {
+                if (rayHit.distance < 0.5f)
+                    anim.SetBool("IsJumping", false);
+            }
+        }
+      
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
