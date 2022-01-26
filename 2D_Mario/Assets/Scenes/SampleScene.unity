@@ -22886,9 +22886,10 @@ GameObject:
   - component: {fileID: 1632802661}
   - component: {fileID: 1632802663}
   - component: {fileID: 1632802664}
+  - component: {fileID: 1632802665}
   m_Layer: 8
   m_Name: ItemOnWall
-  m_TagString: Untagged
+  m_TagString: ItemWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23003,6 +23004,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &1632802665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632802660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c171e82296af0b459daa7cb1e7e8652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 2662920403463266993, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
+  - {fileID: 7304571267395950692, guid: ebf3badc7a73d6444bfe8b9f0b7e3318, type: 3}
 --- !u!1 &1637552933
 GameObject:
   m_ObjectHideFlags: 0
@@ -25113,7 +25129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90083fd93756aa74ab415c6228181153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 14
+  jumpPower: 12
 --- !u!61 &1753638317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29585,6 +29601,10 @@ PrefabInstance:
     - target: {fileID: 861699912775271860, guid: 968ed416d303b9e4ba17f8370d94c3e0, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 861699912775271860, guid: 968ed416d303b9e4ba17f8370d94c3e0, type: 3}
+      propertyPath: m_TagString
+      value: ItemWall
       objectReference: {fileID: 0}
     - target: {fileID: 861699912775271862, guid: 968ed416d303b9e4ba17f8370d94c3e0, type: 3}
       propertyPath: m_RootOrder
