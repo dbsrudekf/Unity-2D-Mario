@@ -8,7 +8,6 @@ public class ItemWall : MonoBehaviour
 
     Animator anim;
 
-
     bool bItemOn = true;
 
     private void Awake()
@@ -32,11 +31,13 @@ public class ItemWall : MonoBehaviour
 
             int iselection = Random.Range(0, prefabs.Length);
 
+            iselection = 1;
             GameObject selectedPrefab = prefabs[iselection];
 
-            Vector2 spawnPos = transform.position;
+            Vector3 spawnPos = transform.position;
 
             GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
+            //instance.transform.parent = gameObject.transform;
 
         }
     }
