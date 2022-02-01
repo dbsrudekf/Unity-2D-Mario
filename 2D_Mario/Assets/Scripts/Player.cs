@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     float fHorizontal;
     SpriteRenderer spriteRenderer;
     Animator anim;
+    BoxCollider2D collider;
 
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         rRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -46,12 +48,23 @@ public class Player : MonoBehaviour
         
 
         if (Mathf.Abs(rRigidbody.velocity.x) < 0.3)
+        {
+            //spriteRenderer.sprite.name = "UpgradeMario2";
+            anim.SetBool("IsBigWalking", false);
             anim.SetBool("IsWalking", false);
+        }
         else
         {
-            anim.SetBool("IsWalking", true);
+            if(anim.GetBool("IsMushroomItem"))
+            {
+                anim.SetBool("IsBigWalking", true);
+            }
+            else
+            {
+                anim.SetBool("IsWalking", true);
+            }
         }
-            
+
     }
 
     void FixedUpdate()
@@ -76,13 +89,31 @@ public class Player : MonoBehaviour
                     anim.SetBool("IsJumping", false);
             }
         }
-      
+
+        if (spriteRenderer.sprite.name == "UpgradeMario")
+        {
+            collider.size = new Vector2(0.16f, 0.16f);
+        }
+        if (spriteRenderer.sprite.name == "UpgradeMario1")
+        {
+            collider.size = new Vector2(0.16f, 0.33f);
+        }
+        if (spriteRenderer.sprite.name == "UpgradeMario2")
+        {
+            collider.size = new Vector2(0.16f, 0.33f);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
+            Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag == "MushRoomItem")
+        {
+            anim.SetBool("IsMushroomItem", true);   
             Destroy(collision.gameObject);
         }
     }
