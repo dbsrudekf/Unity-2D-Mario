@@ -34,11 +34,19 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
 
-        if (Input.GetButtonDown("Jump") && !anim.GetBool("IsJumping"))
+        if (Input.GetButtonDown("Jump") && !anim.GetBool("IsJumping") && !anim.GetBool("IsBigJumping"))
         {
-            rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            anim.SetBool("IsJumping", true);
-            anim.SetBool("IsWalkingFinish", false);
+            if(anim.GetBool("IsMushroomItem"))
+            {
+                rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                anim.SetBool("IsBigJumping", true);
+            }
+            else
+            {
+                rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                anim.SetBool("IsJumping", true);
+                anim.SetBool("IsWalkingFinish", false);
+            }
         }
 
         if (Input.GetButtonUp("Horizontal"))
@@ -49,8 +57,11 @@ public class Player : MonoBehaviour
 
         if (Mathf.Abs(rRigidbody.velocity.x) < 0.3)
         {
-            //spriteRenderer.sprite.name = "UpgradeMario2";
-            anim.SetBool("IsBigWalking", false);
+            if(anim.GetBool("IsMushroomItem"))
+            {
+                //spriteRenderer.sprite.name = "BigMario";
+                anim.SetBool("IsBigWalking", false);
+            }
             anim.SetBool("IsWalking", false);
         }
         else
@@ -80,13 +91,28 @@ public class Player : MonoBehaviour
 
         if(rRigidbody.velocity.y < 0)
         {
+            
             Debug.DrawRay(rRigidbody.position, Vector3.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 1, LayerMask.GetMask("Floor"));
+            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 10.0f, LayerMask.GetMask("Floor"));
 
             if (rayHit.collider != null)
             {
-                if (rayHit.distance < 0.5f)
-                    anim.SetBool("IsJumping", false);
+                
+                if(anim.GetBool("IsMushroomItem"))
+                {
+                    if (rayHit.distance < 1.0f)
+                    {
+                        anim.SetBool("IsBigJumping", false);
+                    }
+                }
+                else
+                {
+                    if (rayHit.distance < 0.5f)
+                    {
+                        anim.SetBool("IsJumping", false);
+                    }
+                }
+                    
             }
         }
 

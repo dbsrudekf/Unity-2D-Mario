@@ -26,7 +26,7 @@ public class ItemWall : MonoBehaviour
         if (collision.gameObject.tag == "Player" && bItemOn)
         {
             bItemOn = false;
-
+            
             anim.SetBool("IsItemOff", true);
 
             int iselection = Random.Range(0, prefabs.Length);

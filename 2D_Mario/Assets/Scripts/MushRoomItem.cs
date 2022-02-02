@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MushRoomItem : MonoBehaviour
 {
-    float fSpeed = 5.0f;
     float fTime = 0.0f;
     float fLimitTime = 2.0f;
+    public int nextMove;
+
 
     bool bIsPattern = false;
-    Vector3 movement;
 
 
     Rigidbody2D rigid;
@@ -44,6 +44,6 @@ public class MushRoomItem : MonoBehaviour
     }
     void MovePattern()
     {
-        
+        nextMove = Random.Range(-1, 2);
     }
 }
