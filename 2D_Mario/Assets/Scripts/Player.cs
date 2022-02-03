@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     float fHorizontal;
     SpriteRenderer spriteRenderer;
     Animator anim;
-    BoxCollider2D collider;
+    BoxCollider2D BoxCollider;
 
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         rRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
+        BoxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         {
             
             Debug.DrawRay(rRigidbody.position, Vector3.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 10.0f, LayerMask.GetMask("Floor"));
+            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 1, LayerMask.GetMask("Floor"));
 
             if (rayHit.collider != null)
             {
@@ -118,15 +118,15 @@ public class Player : MonoBehaviour
 
         if (spriteRenderer.sprite.name == "UpgradeMario")
         {
-            collider.size = new Vector2(0.16f, 0.16f);
+            BoxCollider.size = new Vector2(0.16f, 0.16f);
         }
         if (spriteRenderer.sprite.name == "UpgradeMario1")
         {
-            collider.size = new Vector2(0.16f, 0.33f);
+            BoxCollider.size = new Vector2(0.16f, 0.33f);
         }
         if (spriteRenderer.sprite.name == "UpgradeMario2")
         {
-            collider.size = new Vector2(0.16f, 0.33f);
+            BoxCollider.size = new Vector2(0.16f, 0.33f);
         }
 
     }
@@ -135,12 +135,35 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            Destroy(collision.gameObject);
+            if(rRigidbody.velocity.y > 0 && transform.position.y < collision.transform.position.y)
+            {
+                Destroy(collision.gameObject);
+                Debug.Log("Wall");
+            }
+           // Debug.Log("Wall");
+
         }
         if(collision.gameObject.tag == "MushRoomItem")
         {
             anim.SetBool("IsMushroomItem", true);   
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "MonsterMushroom")
+        {
+            if(rRigidbody.velocity.y < 0 && transform.position.y > collision.transform.position.y)
+            {
+                OnAttack(collision.transform);
+                //Destroy(collision.gameObject);
+            }
+            
+        }
+    }
+
+    void OnAttack(Transform Monster)
+    {
+        rRigidbody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+
+        MushRoomMonster mushroomMonster = Monster.gameObject.GetComponent<MushRoomMonster>();
+        mushroomMonster.OnDamaged();
     }
 }

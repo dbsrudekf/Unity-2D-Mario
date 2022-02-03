@@ -6,18 +6,16 @@ public class MushRoomItem : MonoBehaviour
 {
     float fTime = 0.0f;
     float fLimitTime = 2.0f;
-    public int nextMove;
 
 
-    bool bIsPattern = false;
 
 
     Rigidbody2D rigid;
-    BoxCollider2D collider;
+    BoxCollider2D BoxCollider;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
+        BoxCollider = GetComponent<BoxCollider2D>();
     }
     void Start()
     {
@@ -39,11 +37,10 @@ public class MushRoomItem : MonoBehaviour
         }
         else
         {
-            collider.isTrigger = false;
+            BoxCollider.isTrigger = false;
         }
     }
     void MovePattern()
     {
-        nextMove = Random.Range(-1, 2);
     }
 }
