@@ -50,7 +50,6 @@ public class MushRoomMonster : MonoBehaviour
         //Death 애니메이션
         anim.SetBool("IsDeath", true);
 
-        Debug.Log("OnDamaged");
         //몇초뒤 사라짐
     }
 }

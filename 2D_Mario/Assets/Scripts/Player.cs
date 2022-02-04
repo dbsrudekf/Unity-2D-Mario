@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    float fTime = 0.0f;
+    float fLimitTime = 0.02f;
     float fSpeed = 5.0f;
     public float jumpPower = 10.0f;
+    bool bIsFloor = false;
 
     Rigidbody2D rRigidbody;
-    float fHorizontal;
     SpriteRenderer spriteRenderer;
     Animator anim;
     BoxCollider2D BoxCollider;
@@ -91,14 +93,13 @@ public class Player : MonoBehaviour
 
         if(rRigidbody.velocity.y < 0)
         {
-            
+            bIsFloor = true;
             Debug.DrawRay(rRigidbody.position, Vector3.down, new Color(0, 1, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 1, LayerMask.GetMask("Floor"));
 
             if (rayHit.collider != null)
             {
-                
-                if(anim.GetBool("IsMushroomItem"))
+                if (anim.GetBool("IsMushroomItem"))
                 {
                     if (rayHit.distance < 1.0f)
                     {
@@ -115,7 +116,20 @@ public class Player : MonoBehaviour
                     
             }
         }
-
+        else
+        {
+            Debug.DrawRay(rRigidbody.position, Vector3.right, new Color(0, 1, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.right, 1, LayerMask.GetMask("Floor"));
+            if(rayHit.collider != null)
+            {
+                bIsFloor = true;
+            }
+            else
+            {
+                bIsFloor = false;
+            }
+        }
+        
         if (spriteRenderer.sprite.name == "UpgradeMario")
         {
             BoxCollider.size = new Vector2(0.16f, 0.16f);
@@ -135,17 +149,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            if(rRigidbody.velocity.y > 0 && transform.position.y < collision.transform.position.y)
+            if (!bIsFloor)
             {
                 Destroy(collision.gameObject);
-                Debug.Log("Wall");
             }
-           // Debug.Log("Wall");
-
         }
         if(collision.gameObject.tag == "MushRoomItem")
         {
-            anim.SetBool("IsMushroomItem", true);   
+            anim.SetBool("IsMushroomItem", true);
+            anim.SetBool("IsJumping", false);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "MonsterMushroom")
@@ -153,17 +165,41 @@ public class Player : MonoBehaviour
             if(rRigidbody.velocity.y < 0 && transform.position.y > collision.transform.position.y)
             {
                 OnAttack(collision.transform);
-                //Destroy(collision.gameObject);
             }
             
         }
-    }
+        if (collision.gameObject.tag == "MonsterTurtle")
+        {
+            if (rRigidbody.velocity.y < 0 && transform.position.y > collision.transform.position.y)
+            {
+                OnAttack(collision.transform);
+            }
 
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        fTime += Time.deltaTime;
+
+        if (fTime > fLimitTime && collision.gameObject.tag == "MushRoomItem")
+        {
+            anim.SetBool("IsMushroomItem", true);
+            anim.SetBool("IsJumping", false);
+            Destroy(collision.gameObject);
+        }
+    }
     void OnAttack(Transform Monster)
     {
         rRigidbody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-
-        MushRoomMonster mushroomMonster = Monster.gameObject.GetComponent<MushRoomMonster>();
-        mushroomMonster.OnDamaged();
+        if (Monster.gameObject.tag == "MonsterMushroom")
+        {
+            MushRoomMonster mushroomMonster = Monster.gameObject.GetComponent<MushRoomMonster>();
+            mushroomMonster.OnDamaged();
+        }
+        if(Monster.gameObject.tag == "MonsterTurtle")
+        {
+            TutleMonster turtleMonster = Monster.gameObject.GetComponent<TutleMonster>();
+            turtleMonster.OnDamaged();
+        }
     }
 }

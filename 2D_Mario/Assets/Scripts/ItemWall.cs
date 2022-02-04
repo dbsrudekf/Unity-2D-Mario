@@ -31,7 +31,7 @@ public class ItemWall : MonoBehaviour
 
             int iselection = Random.Range(0, prefabs.Length);
 
-            iselection = 1;
+            iselection = 0;
             GameObject selectedPrefab = prefabs[iselection];
 
             Vector3 spawnPos = transform.position;

@@ -7,9 +7,6 @@ public class MushRoomItem : MonoBehaviour
     float fTime = 0.0f;
     float fLimitTime = 2.0f;
 
-
-
-
     Rigidbody2D rigid;
     BoxCollider2D BoxCollider;
     void Awake()
@@ -39,8 +36,5 @@ public class MushRoomItem : MonoBehaviour
         {
             BoxCollider.isTrigger = false;
         }
-    }
-    void MovePattern()
-    {
     }
 }
