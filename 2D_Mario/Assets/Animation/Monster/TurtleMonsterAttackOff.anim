@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TurtleMonsterAttack
+  m_Name: TurtleMonsterAttackOff
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,12 +21,8 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: f8d658c8675296343b7ae8d332aa162e, type: 3}
-    - time: 0.16666667
-      value: {fileID: 21300000, guid: 5b6de3c6ae8545543b8717df2bc290f3, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: 617ae3ccae05e684bbf5a3319e624016, type: 3}
-    - time: 0.5
-      value: {fileID: 21300000, guid: 15a3b21f011b8534faf5df8a8185fdcc, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: f8d658c8675296343b7ae8d332aa162e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -47,15 +43,13 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: f8d658c8675296343b7ae8d332aa162e, type: 3}
-    - {fileID: 21300000, guid: 5b6de3c6ae8545543b8717df2bc290f3, type: 3}
-    - {fileID: 21300000, guid: 617ae3ccae05e684bbf5a3319e624016, type: 3}
-    - {fileID: 21300000, guid: 15a3b21f011b8534faf5df8a8185fdcc, type: 3}
+    - {fileID: 21300000, guid: f8d658c8675296343b7ae8d332aa162e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5833333
+    m_StopTime: 0.16666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

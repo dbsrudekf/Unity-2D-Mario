@@ -8,6 +8,8 @@ TagManager:
   - ItemWall
   - MushRoomItem
   - MonsterMushroom
+  - MonsterTurtle
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - 
   - 
   - Floor
-  - 
+  - Obstacle
   - 
   - 
   - 

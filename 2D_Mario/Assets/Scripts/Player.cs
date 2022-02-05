@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     float fSpeed = 5.0f;
     public float jumpPower = 10.0f;
     bool bIsFloor = false;
+    bool bIsOverPower = false;
 
     Rigidbody2D rRigidbody;
     SpriteRenderer spriteRenderer;
@@ -55,11 +56,10 @@ public class Player : MonoBehaviour
             anim.SetBool("IsWalkingFinish", true);
         else
             anim.SetBool("IsWalkingFinish", false);
-        
 
         if (Mathf.Abs(rRigidbody.velocity.x) < 0.3)
         {
-            if(anim.GetBool("IsMushroomItem"))
+            if (anim.GetBool("IsMushroomItem"))
             {
                 //spriteRenderer.sprite.name = "BigMario";
                 anim.SetBool("IsBigWalking", false);
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if(anim.GetBool("IsMushroomItem"))
+            if (anim.GetBool("IsMushroomItem"))
             {
                 anim.SetBool("IsBigWalking", true);
             }
@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
                 anim.SetBool("IsWalking", true);
             }
         }
-
     }
 
     void FixedUpdate()
@@ -142,6 +141,10 @@ public class Player : MonoBehaviour
         {
             BoxCollider.size = new Vector2(0.16f, 0.33f);
         }
+        if (spriteRenderer.sprite.name == "NormalMario1")
+        {
+            BoxCollider.size = new Vector2(0.16f, 0.16f);
+        }
 
     }
 
@@ -166,6 +169,13 @@ public class Player : MonoBehaviour
             {
                 OnAttack(collision.transform);
             }
+            else
+            {
+                if(!bIsOverPower)
+                {
+                    OnDamaged();
+                }
+            }
             
         }
         if (collision.gameObject.tag == "MonsterTurtle")
@@ -173,6 +183,13 @@ public class Player : MonoBehaviour
             if (rRigidbody.velocity.y < 0 && transform.position.y > collision.transform.position.y)
             {
                 OnAttack(collision.transform);
+            }
+            else
+            {
+                if (!bIsOverPower)
+                {
+                    OnDamaged();
+                }
             }
 
         }
@@ -201,5 +218,28 @@ public class Player : MonoBehaviour
             TutleMonster turtleMonster = Monster.gameObject.GetComponent<TutleMonster>();
             turtleMonster.OnDamaged();
         }
+    }
+
+    void OnDamaged()
+    {
+        if(anim.GetBool("IsMushroomItem"))
+        {
+            anim.SetBool("IsMushroomItem", false);
+            bIsOverPower = true;
+            spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+            Invoke("OnDamagedOff", 3.0f);
+        }
+        else
+        {
+            anim.SetBool("IsDeath", true);
+            rRigidbody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            BoxCollider.enabled = false;
+        }
+    }
+
+    void OnDamagedOff()
+    {
+        bIsOverPower = false;
+        spriteRenderer.color = new Color(1, 1, 1, 1.0f);
     }
 }

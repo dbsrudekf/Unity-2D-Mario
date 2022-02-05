@@ -11,6 +11,7 @@ public class TutleMonster : MonoBehaviour
 
     public int nextMove;
     public int ColliderCount = 0;
+    bool bIsDeath = false;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -40,7 +41,7 @@ public class TutleMonster : MonoBehaviour
             }
 
             Invoke("MovePattern", 3);
-            spriteRenderer.flipX = nextMove == -1;
+            spriteRenderer.flipX = nextMove == -1; //nextMove가 -1일 때 flipX가 활성화
         }
     }
 
@@ -48,13 +49,36 @@ public class TutleMonster : MonoBehaviour
     {
         if(anim.GetBool("IsAttack"))
         {
-            nextMove = 1;
+            nextMove = 2;
         }
         else
         {
             nextMove = 0;
         }
-        Invoke("OnAttack", 3);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            nextMove = nextMove * -1;
+            spriteRenderer.flipX = nextMove == -1; //nextMove가 -1일 때 flipX가 활성화
+        }
+
+        if(bIsDeath)
+        {
+            if (collision.gameObject.tag == "MonsterTurtle")
+            {
+                //날아간다.
+
+            }
+
+            if(collision.gameObject.tag == "MonsterMushroom")
+            {
+                //날아간다.
+            }
+        }
+        
     }
 
     public void OnDamaged()
@@ -63,8 +87,10 @@ public class TutleMonster : MonoBehaviour
         col.size = new Vector2(0.17f, 0.16f);
         nextMove = 0;
         ColliderCount++;
-        
-        if(ColliderCount != 0 && ColliderCount % 2 == 0)
+        bIsDeath = true;
+
+
+        if (ColliderCount != 0 && ColliderCount % 2 == 0)
         {
             anim.SetBool("IsAttack", true);
             OnAttack();
