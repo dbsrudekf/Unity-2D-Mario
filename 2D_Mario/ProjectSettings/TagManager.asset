@@ -10,6 +10,7 @@ TagManager:
   - MonsterMushroom
   - MonsterTurtle
   - Obstacle
+  - FireFlowerItem
   layers:
   - Default
   - TransparentFX
