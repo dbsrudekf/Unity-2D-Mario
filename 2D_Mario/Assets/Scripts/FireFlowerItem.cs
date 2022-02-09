@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class FireFlowerItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    float fTime = 0.0f;
+    float fLimitTime = 2.0f;
+
+    Rigidbody2D rigid;
+    BoxCollider2D BoxCollider;
+
+    void Awake()
     {
-        
+        rigid = GetComponent<Rigidbody2D>();
+        BoxCollider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        fTime += Time.deltaTime;
+        if (fTime < fLimitTime)
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, 0.5f);
+
+        }
+        else
+        {
+            BoxCollider.isTrigger = false;
+        }
     }
 }
