@@ -65,17 +65,23 @@ public class TutleMonster : MonoBehaviour
             spriteRenderer.flipX = nextMove == -1; //nextMove가 -1일 때 flipX가 활성화
         }
 
-        if(bIsDeath)
+        if(bIsDeath && anim.GetBool("IsAttack"))
         {
             if (collision.gameObject.tag == "MonsterTurtle")
             {
                 //날아간다.
+                int dirc = transform.position.x - collision.transform.position.x > 0 ? -1 : 1;
+                collision.rigidbody.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
+                collision.collider.isTrigger = true;
 
             }
 
             if(collision.gameObject.tag == "MonsterMushroom")
             {
                 //날아간다.
+                int dirc = transform.position.x - collision.transform.position.x > 0 ? 1 : -1;
+                collision.rigidbody.AddForce(new Vector2(dirc, 1) * 2, ForceMode2D.Impulse);
+                collision.collider.isTrigger = true;
             }
         }
         

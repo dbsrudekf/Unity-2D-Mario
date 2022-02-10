@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
         {
             if (anim.GetBool("IsMushroomItem"))
             {
-                //spriteRenderer.sprite.name = "BigMario";
                 anim.SetBool("IsBigWalking", false);
             }
             anim.SetBool("IsWalking", false);
