@@ -70,17 +70,19 @@ public class TutleMonster : MonoBehaviour
             if (collision.gameObject.tag == "MonsterTurtle")
             {
                 //날아간다.
-                int dirc = transform.position.x - collision.transform.position.x > 0 ? -1 : 1;
-                collision.rigidbody.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
-                collision.collider.isTrigger = true;
+                //int dirc = transform.position.x - collision.transform.position.x > 0 ? -1 : 1;
+                //collision.rigidbody.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
+                //collision.collider.isTrigger = true;
 
             }
 
             if(collision.gameObject.tag == "MonsterMushroom")
             {
                 //날아간다.
-                int dirc = transform.position.x - collision.transform.position.x > 0 ? 1 : -1;
-                collision.rigidbody.AddForce(new Vector2(dirc, 1) * 2, ForceMode2D.Impulse);
+                //int dirc = transform.position.x + collision.transform.position.x > 0 ? -1 : 1;
+                //MushRoomMonster mushroomMonster = collision.gameObject.GetComponent<MushRoomMonster>();
+                //mushroomMonster.TurtleDamaged();
+                collision.rigidbody.AddForce(new Vector2(2,2), ForceMode2D.Impulse);
                 collision.collider.isTrigger = true;
             }
         }

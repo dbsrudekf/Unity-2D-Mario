@@ -52,4 +52,11 @@ public class MushRoomMonster : MonoBehaviour
 
         //몇초뒤 사라짐
     }
+
+    public void TurtleDamaged()
+    {
+        //rigid.AddForce(new Vector2(1, 1), ForceMode2D.Impulse);
+        
+    }
+
 }

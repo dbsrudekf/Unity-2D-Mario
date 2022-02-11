@@ -23,7 +23,7 @@ public class ItemWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && bItemOn)
+        if (collision.gameObject.tag == "Player" && bItemOn && transform.position.y > collision.transform.position.y)
         {
             bItemOn = false;
             
