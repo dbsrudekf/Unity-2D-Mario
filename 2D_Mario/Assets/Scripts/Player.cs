@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         else
         {
             anim.SetBool("IsDeath", true);
-            rRigidbody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            rRigidbody.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
             BoxCollider.enabled = false;
         }
     }

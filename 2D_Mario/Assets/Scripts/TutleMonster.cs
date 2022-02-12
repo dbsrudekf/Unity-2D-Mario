@@ -80,10 +80,10 @@ public class TutleMonster : MonoBehaviour
             {
                 //날아간다.
                 //int dirc = transform.position.x + collision.transform.position.x > 0 ? -1 : 1;
-                //MushRoomMonster mushroomMonster = collision.gameObject.GetComponent<MushRoomMonster>();
-                //mushroomMonster.TurtleDamaged();
-                collision.rigidbody.AddForce(new Vector2(2,2), ForceMode2D.Impulse);
-                collision.collider.isTrigger = true;
+                MushRoomMonster mushroomMonster = collision.gameObject.GetComponent<MushRoomMonster>();
+                mushroomMonster.TurtleDamaged(gameObject.transform.position);
+                //collision.rigidbody.AddForce(new Vector2(2,2), ForceMode2D.Impulse);
+                //collision.collider.isTrigger = true;
             }
         }
         
@@ -91,6 +91,7 @@ public class TutleMonster : MonoBehaviour
 
     public void OnDamaged()
     {
+        gameObject.layer = 12;
         anim.SetBool("IsDeath", true);
         col.size = new Vector2(0.17f, 0.16f);
         nextMove = 0;

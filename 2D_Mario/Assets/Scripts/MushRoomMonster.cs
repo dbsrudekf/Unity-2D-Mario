@@ -7,16 +7,19 @@ public class MushRoomMonster : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
+    BoxCollider2D col;
 
     public int nextMove;
     float fTime = 0.0f;
     float fLimitTime = 0.5f;
+    bool bIsDeath = false;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        col = GetComponent<BoxCollider2D>();
         Invoke("MovePattern", 5);
     }
 
@@ -40,9 +43,12 @@ public class MushRoomMonster : MonoBehaviour
 
     void MovePattern()
     {
-        nextMove = Random.Range(-1, 2);
+        if(!bIsDeath)
+        {
+            nextMove = Random.Range(-1, 2);
+            Invoke("MovePattern", 5);
+        }
 
-        Invoke("MovePattern", 5);
     }
     
     public void OnDamaged()
@@ -53,10 +59,29 @@ public class MushRoomMonster : MonoBehaviour
         //몇초뒤 사라짐
     }
 
-    public void TurtleDamaged()
+    public void TurtleDamaged(Vector2 position)
     {
-        //rigid.AddForce(new Vector2(1, 1), ForceMode2D.Impulse);
-        
+        bIsDeath = true;
+        if(position.x > gameObject.transform.position.x)
+        {
+            nextMove = -1;
+        }
+        else
+        {
+            nextMove = 1;
+        }
+       
+
+        rigid.velocity = new Vector2(nextMove, 2);
+        col.isTrigger = true;
+
+        fTime += Time.deltaTime;
+        if (fTime > fLimitTime)
+        {
+            Destroy(gameObject);
+        }
+        spriteRenderer.flipY = true;
+
     }
 
 }

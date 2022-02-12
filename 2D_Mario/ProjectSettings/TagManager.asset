@@ -22,9 +22,9 @@ TagManager:
   - 
   - Floor
   - Obstacle
-  - 
-  - 
-  - 
+  - Object
+  - Enemy
+  - TurtleEnemyDeath
   - 
   - 
   - 
