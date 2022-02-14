@@ -192,6 +192,10 @@ public class Player : MonoBehaviour
             }
 
         }
+        if(collision.gameObject.tag == "FireFlowerItem")
+        {
+            anim.SetBool("IsFireItem", true);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
