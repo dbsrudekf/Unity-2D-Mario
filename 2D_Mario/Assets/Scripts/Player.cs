@@ -41,14 +41,27 @@ public class Player : MonoBehaviour
         {
             if(anim.GetBool("IsMushroomItem"))
             {
+                if(anim.GetBool("IsFireItem"))
+                {
+
+                }
                 rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 anim.SetBool("IsBigJumping", true);
             }
             else
             {
-                rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-                anim.SetBool("IsJumping", true);
-                anim.SetBool("IsWalkingFinish", false);
+                if(anim.GetBool("IsFireItem"))
+                {
+                    rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                    anim.SetBool("IsJumping", true);
+                }
+                else
+                {
+                    rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                    anim.SetBool("IsJumping", true);
+                    anim.SetBool("IsWalkingFinish", false);
+                }
+
             }
         }
 
@@ -195,6 +208,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "FireFlowerItem")
         {
             anim.SetBool("IsFireItem", true);
+            Destroy(collision.gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -227,16 +241,31 @@ public class Player : MonoBehaviour
     {
         if(anim.GetBool("IsMushroomItem"))
         {
-            anim.SetBool("IsMushroomItem", false);
-            bIsOverPower = true;
-            spriteRenderer.color = new Color(1, 1, 1, 0.4f);
-            Invoke("OnDamagedOff", 3.0f);
+            if(anim.GetBool("IsFireItem"))
+            {
+                anim.SetBool("IsFireItem", false);
+            }
+            else
+            {
+                anim.SetBool("IsMushroomItem", false);
+                bIsOverPower = true;
+                spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+                Invoke("OnDamagedOff", 3.0f);
+            }
         }
         else
         {
-            anim.SetBool("IsDeath", true);
-            rRigidbody.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
-            BoxCollider.enabled = false;
+            if(anim.GetBool("IsFireItem"))
+            {
+                anim.SetBool("IsFireItem", false);
+            }
+            else
+            {
+                anim.SetBool("IsDeath", true);
+                rRigidbody.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+                BoxCollider.enabled = false;
+            }
+            
         }
     }
 
