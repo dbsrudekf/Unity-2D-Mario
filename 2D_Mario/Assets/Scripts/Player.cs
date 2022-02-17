@@ -41,10 +41,10 @@ public class Player : MonoBehaviour
         {
             if(anim.GetBool("IsMushroomItem"))
             {
-                if(anim.GetBool("IsFireItem"))
-                {
-
-                }
+                //if(anim.GetBool("IsFireItem"))
+                //{
+                //    //BigFireMario Jump
+                //}
                 rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 anim.SetBool("IsBigJumping", true);
             }
@@ -76,7 +76,11 @@ public class Player : MonoBehaviour
             {
                 anim.SetBool("IsBigWalking", false);
             }
-            anim.SetBool("IsWalking", false);
+            else
+            {
+                anim.SetBool("IsWalking", false);
+            }
+            
         }
         else
         {
