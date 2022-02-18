@@ -19,13 +19,13 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Player
   - Floor
   - Obstacle
   - Object
   - Enemy
   - TurtleEnemyDeath
-  - 
+  - Bullet
   - 
   - 
   - 

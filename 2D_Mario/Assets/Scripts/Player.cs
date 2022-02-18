@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float jumpPower = 10.0f;
     bool bIsFloor = false;
     bool bIsOverPower = false;
+    public GameObject BulletPrefab;
+
 
     Rigidbody2D rRigidbody;
     SpriteRenderer spriteRenderer;
@@ -29,6 +31,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            //ºæ·¿»ý¼º
+            Vector3 spawnPos = transform.position;
+            GameObject instance = Instantiate(BulletPrefab, spawnPos, Quaternion.identity);
+        }
         if(Input.GetButtonUp("Horizontal"))
         {
             rRigidbody.velocity = new Vector2(rRigidbody.velocity.normalized.x * 0.5f, rRigidbody.velocity.y);
@@ -41,10 +49,6 @@ public class Player : MonoBehaviour
         {
             if(anim.GetBool("IsMushroomItem"))
             {
-                //if(anim.GetBool("IsFireItem"))
-                //{
-                //    //BigFireMario Jump
-                //}
                 rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 anim.SetBool("IsBigJumping", true);
             }
@@ -157,6 +161,20 @@ public class Player : MonoBehaviour
         {
             BoxCollider.size = new Vector2(0.16f, 0.33f);
         }
+
+        if (spriteRenderer.sprite.name == "BigFireMarioUpgrade0R")
+        {
+            BoxCollider.size = new Vector2(0.16f, 0.16f);
+        }
+        if (spriteRenderer.sprite.name == "BigFireMarioUpgrade1")
+        {
+            BoxCollider.size = new Vector2(0.16f, 0.33f);
+        }
+        if (spriteRenderer.sprite.name == "BigFireMarioUpgrade2")
+        {
+            BoxCollider.size = new Vector2(0.16f, 0.33f);
+        }
+
         if (spriteRenderer.sprite.name == "NormalMario1")
         {
             BoxCollider.size = new Vector2(0.16f, 0.16f);
@@ -213,6 +231,14 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("IsFireItem", true);
             Destroy(collision.gameObject);
+            if(anim.GetBool("IsMushroomItem"))
+            {
+                anim.SetBool("IsBigFireUpgrade", false);
+            }
+            else
+            {
+                anim.SetBool("IsBigFireUpgrade", true);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
