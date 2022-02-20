@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     bool bIsOverPower = false;
     public GameObject BulletPrefab;
 
-
     Rigidbody2D rRigidbody;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -33,9 +32,8 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
-            //烘房积己
-            Vector3 spawnPos = transform.position;
-            GameObject instance = Instantiate(BulletPrefab, spawnPos, Quaternion.identity);
+            //烘房积己          
+            GameObject instance = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         }
         if(Input.GetButtonUp("Horizontal"))
         {
@@ -43,7 +41,10 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Horizontal"))
+        {
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+ 
+        }
 
         if (Input.GetButtonDown("Jump") && !anim.GetBool("IsJumping") && !anim.GetBool("IsBigJumping"))
         {
