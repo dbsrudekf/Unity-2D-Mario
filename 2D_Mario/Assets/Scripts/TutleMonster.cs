@@ -11,6 +11,9 @@ public class TutleMonster : MonoBehaviour
 
     public int nextMove;
     public int ColliderCount = 0;
+    float fTime = 0.0f;
+    float fLimitTime = 0.5f;
+
     bool bIsDeath = false;
     private void Awake()
     {
@@ -106,5 +109,30 @@ public class TutleMonster : MonoBehaviour
         {
             anim.SetBool("IsAttack", false);
         }
+    }
+
+    public void TurtleDamaged(Vector2 position)
+    {
+        bIsDeath = true;
+        if (position.x > gameObject.transform.position.x)
+        {
+            nextMove = -1;
+        }
+        else
+        {
+            nextMove = 1;
+        }
+
+
+        rigid.velocity = new Vector2(nextMove, 2);
+        col.isTrigger = true;
+
+        fTime += Time.deltaTime;
+        if (fTime > fLimitTime)
+        {
+            Destroy(gameObject);
+        }
+        spriteRenderer.flipY = true;
+
     }
 }
