@@ -241,12 +241,12 @@ public class Player : MonoBehaviour
                 anim.SetBool("IsBigFireUpgrade", true);
             }
         }
-
         if(collision.gameObject.tag == "Flag")
         {
-            //±ê¹ß ½Ã°£¿¡ µû¶ó ¶³¾îÁü
-            collision.transform.position.y = Time.deltaTime;
+            anim.SetBool("IsFlag", true);
+            transform.position = new Vector3(59.7f, 2.8f, transform.position.z);
         }
+       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
