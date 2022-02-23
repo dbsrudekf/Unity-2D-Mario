@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 35178232}
   - component: {fileID: 35178231}
   - component: {fileID: 35178233}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5644,6 +5644,30 @@ Transform:
   m_Father: {fileID: 1582792091}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &416064256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6029139672839946884, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
+  m_PrefabInstance: {fileID: 6029139673502279469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &416064257
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416064256}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 39e33ed92c366f847a3f495893b58799, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &420472482
 GameObject:
   m_ObjectHideFlags: 0
@@ -7834,7 +7858,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.044183604}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7845,7 +7869,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44, y: 0.45}
+  m_Size: {x: 0.44, y: 0.36163276}
   m_EdgeRadius: 0
 --- !u!114 &560538660
 MonoBehaviour:
@@ -9352,7 +9376,7 @@ GameObject:
   - component: {fileID: 723041032}
   - component: {fileID: 723041031}
   - component: {fileID: 723041033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13894,7 +13918,7 @@ GameObject:
   - component: {fileID: 1024322738}
   - component: {fileID: 1024322739}
   - component: {fileID: 1024322740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14375,7 +14399,7 @@ GameObject:
   - component: {fileID: 1044875678}
   - component: {fileID: 1044875679}
   - component: {fileID: 1044875680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15058,7 +15082,7 @@ GameObject:
   - component: {fileID: 1063077890}
   - component: {fileID: 1063077889}
   - component: {fileID: 1063077891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21630,7 +21654,7 @@ GameObject:
   - component: {fileID: 1525782056}
   - component: {fileID: 1525782055}
   - component: {fileID: 1525782057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23208,7 +23232,7 @@ GameObject:
   - component: {fileID: 1621057213}
   - component: {fileID: 1621057214}
   - component: {fileID: 1621057215}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23954,7 +23978,7 @@ GameObject:
   - component: {fileID: 1657932742}
   - component: {fileID: 1657932743}
   - component: {fileID: 1657932744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29488,7 +29512,7 @@ GameObject:
   - component: {fileID: 2109787282}
   - component: {fileID: 2109787283}
   - component: {fileID: 2109787284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triobstacle (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30120,7 +30144,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6029139672839946883, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
 --- !u!1001 &9097277173707732204
 PrefabInstance:

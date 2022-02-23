@@ -34,9 +34,10 @@ public class Flag : MonoBehaviour
             if (transform.position.y < fLimitFlagPos)
             {
                 bIsCol = false;
-                player.GetComponent<Animator>().speed = 0.0f;
                 player.GetComponent<SpriteRenderer>().flipX = true;
-                player.GetComponent<Transform>().position = new Vector3(60.4f, transform.position.y, transform.position.z);
+                player.GetComponent<Transform>().position = new Vector3(60.4f, collision.transform.position.y, transform.position.z);
+                player.GetComponent<Animator>().SetBool("IsFlag", false);
+                player.GetComponent<Animator>().SetBool("IsFlagFinish", true);
             }
             else
             {

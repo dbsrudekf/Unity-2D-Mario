@@ -244,7 +244,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "Flag")
         {
             anim.SetBool("IsFlag", true);
-            transform.position = new Vector3(59.7f, 2.8f, transform.position.z);
+            transform.position = new Vector3(59.7f, transform.position.y, transform.position.z);
         }
        
     }
