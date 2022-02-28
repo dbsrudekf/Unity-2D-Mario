@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     public float jumpPower = 10.0f;
     bool bIsFloor = false;
     bool bIsOverPower = false;
+
+    float fPlayerHalfSize = 0.28f;
+    float fWallHalfSize = 0.32f;
+
     public GameObject BulletPrefab;
 
     Rigidbody2D rRigidbody;
@@ -113,7 +117,7 @@ public class Player : MonoBehaviour
 
         if(rRigidbody.velocity.y < 0)
         {
-            bIsFloor = true;
+            //bIsFloor = true;
             Debug.DrawRay(rRigidbody.position, Vector3.down, new Color(0, 1, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.down, 1, LayerMask.GetMask("Floor"));
 
@@ -136,19 +140,19 @@ public class Player : MonoBehaviour
                     
             }
         }
-        else
-        {
-            Debug.DrawRay(rRigidbody.position, Vector3.right, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.right, 1, LayerMask.GetMask("Floor"));
-            if(rayHit.collider != null)
-            {
-                bIsFloor = true;
-            }
-            else
-            {
-                bIsFloor = false;
-            }
-        }
+        //else
+        //{
+        //    Debug.DrawRay(rRigidbody.position, Vector3.right, new Color(0, 1, 0));
+        //    RaycastHit2D rayHit = Physics2D.Raycast(rRigidbody.position, Vector3.right, 1, LayerMask.GetMask("Floor"));
+        //    if(rayHit.collider != null)
+        //    {
+        //        bIsFloor = true;
+        //    }
+        //    else
+        //    {
+        //        bIsFloor = false;
+        //    }
+        //}
         
         if (spriteRenderer.sprite.name == "UpgradeMario")
         {
@@ -175,7 +179,6 @@ public class Player : MonoBehaviour
         {
             BoxCollider.size = new Vector2(0.16f, 0.33f);
         }
-
         if (spriteRenderer.sprite.name == "NormalMario1")
         {
             BoxCollider.size = new Vector2(0.16f, 0.16f);
@@ -187,10 +190,16 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            if (!bIsFloor)
+            if (rRigidbody.velocity.y > 0 && transform.position.y < collision.transform.position.y)
             {
-                Destroy(collision.gameObject);
+                if(transform.position.x > (collision.transform.position.x - fWallHalfSize) 
+                    || transform.position.x < collision.transform.position.x + fWallHalfSize)
+                {
+                    Destroy(collision.gameObject);
+                }
+                //Destroy(collision.gameObject);
             }
+
         }
         if(collision.gameObject.tag == "MushRoomItem")
         {
