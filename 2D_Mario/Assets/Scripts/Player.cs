@@ -190,14 +190,13 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            if (rRigidbody.velocity.y > 0 && transform.position.y < collision.transform.position.y)
+            if (rRigidbody.velocity.y >= 0 && transform.position.y < collision.transform.position.y)
             {
                 if(transform.position.x > (collision.transform.position.x - fWallHalfSize) 
                     || transform.position.x < collision.transform.position.x + fWallHalfSize)
                 {
                     Destroy(collision.gameObject);
                 }
-                //Destroy(collision.gameObject);
             }
 
         }
