@@ -73,9 +73,8 @@ public class TutleMonster : MonoBehaviour
             if (collision.gameObject.tag == "MonsterTurtle")
             {
                 //날아간다.
-                //int dirc = transform.position.x - collision.transform.position.x > 0 ? -1 : 1;
-                //collision.rigidbody.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
-                //collision.collider.isTrigger = true;
+                TutleMonster turtleMonster = collision.gameObject.GetComponent<TutleMonster>();
+                turtleMonster.TurtleDamaged(gameObject.transform.position);
 
             }
 
