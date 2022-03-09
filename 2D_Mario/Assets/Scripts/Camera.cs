@@ -6,7 +6,20 @@ public class Camera : MonoBehaviour
 {
 
     GameObject Player;
-    // Start is called before the first frame update
+    static public Camera instance;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         Player = GameObject.Find("Mario");

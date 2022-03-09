@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -29,6 +30,11 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         BoxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -265,6 +271,11 @@ public class Player : MonoBehaviour
             anim.SetBool("IsMushroomItem", true);
             anim.SetBool("IsJumping", false);
             Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Castle")
+        {
+            SceneManager.LoadScene("BossStage");
         }
     }
     void OnAttack(Transform Monster)
