@@ -16,6 +16,8 @@ TagManager:
   - Coin
   - BossMonster
   - Bridge
+  - FrontBossLine
+  - BackBossLine
   layers:
   - Default
   - TransparentFX

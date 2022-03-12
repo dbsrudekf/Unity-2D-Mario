@@ -9,6 +9,7 @@ public class BossMonster : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public GameObject BulletPrefab;
     public Transform tBulletPos;
+    GameObject player;
 
     public int nextMove;
     float fJumpPower = 6.0f;
@@ -17,26 +18,14 @@ public class BossMonster : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Invoke("MovePattern", 2);
+        player = GameObject.Find("Mario");
+        nextMove = -1;
         //Invoke("BulletCreate", 2);
     }
 
     private void FixedUpdate()
     {
-        Vector2 rayPos = rigid.position;
-
-        rayPos.x = rigid.position.x - 1;
-
-        Debug.DrawRay(rayPos, Vector3.down, new Color(0, 1, 0));
-
-        RaycastHit2D rayHit = Physics2D.Raycast(rayPos, Vector3.down, 1, LayerMask.GetMask("BossMoveLine"));
-
-        if (rayHit.collider != null)
-        {
-            nextMove = 1;
-        }
-
-        if (nextMove == 1)
+        if(player.transform.position.x > transform.position.x)
         {
             spriteRenderer.flipX = true;
         }
@@ -44,7 +33,7 @@ public class BossMonster : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-
+        
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
     }
 
@@ -55,11 +44,18 @@ public class BossMonster : MonoBehaviour
             rigid.AddForce(Vector2.up * fJumpPower, ForceMode2D.Impulse);
         }
     }
-    void MovePattern()
-    {
-        nextMove = Random.Range(-1, 2);
 
-        Invoke("MovePattern", 2);
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "FrontBossLine")
+        {
+            nextMove = 1;
+        }
+
+        if (collision.gameObject.tag == "BackBossLine")
+        {
+            nextMove = -1;
+        }
     }
 
     void BulletCreate()
