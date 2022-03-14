@@ -9,6 +9,7 @@ public class BossMonster : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public GameObject BulletPrefab;
     public Transform tBulletPos;
+    public Transform tBulletBackPos;
     GameObject player;
 
     public int nextMove;
@@ -20,7 +21,7 @@ public class BossMonster : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Mario");
         nextMove = -1;
-        //Invoke("BulletCreate", 2);
+        Invoke("BulletCreate", 2.2f);
     }
 
     private void FixedUpdate()
@@ -28,10 +29,12 @@ public class BossMonster : MonoBehaviour
         if(player.transform.position.x > transform.position.x)
         {
             spriteRenderer.flipX = true;
+            //nextMove = 1;
         }
         else
         {
             spriteRenderer.flipX = false;
+            //nextMove = -1;
         }
         
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
@@ -51,7 +54,7 @@ public class BossMonster : MonoBehaviour
         {
             nextMove = 1;
         }
-
+        
         if (collision.gameObject.tag == "BackBossLine")
         {
             nextMove = -1;
@@ -62,9 +65,14 @@ public class BossMonster : MonoBehaviour
     {
         if(!spriteRenderer.flipX)
         {
-            GameObject instance = Instantiate(BulletPrefab, tBulletPos.position, Quaternion.identity);  
+            GameObject instance = Instantiate(BulletPrefab, tBulletPos.position, Quaternion.identity);
         }
-        Invoke("BulletCreate", 2);
+        else
+        {
+            GameObject instance = Instantiate(BulletPrefab, tBulletBackPos.position, Quaternion.identity);
+        }
+        
+        Invoke("BulletCreate", 2.2f);
 
     }
 }
