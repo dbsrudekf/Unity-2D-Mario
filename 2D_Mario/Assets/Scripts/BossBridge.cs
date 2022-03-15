@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class BossBridge : MonoBehaviour
 {
+    public GameObject BossStair;
+    public GameObject BossHammer;
+    public GameObject BossMonster;
+    BoxCollider2D col;
     float fCurrentTime = 0.0f;
     float fLimitTime = 0.1f;
 
-    int iCount = 0;
+    int iCount = 12;
     public bool bCol;
 
     private void Awake()
     {
+        col = GetComponent<BoxCollider2D>();
         bCol = false;
     }
 
     void Update()
     {
         fCurrentTime += Time.deltaTime;
-
+        
         if (bCol && fCurrentTime > fLimitTime)
         {
             Debug.Log("Col");
-            //StartCoroutine(BridgeDestroy());
             BridgeDestroy();
             fCurrentTime = 0.0f;
         }
@@ -31,7 +35,18 @@ public class BossBridge : MonoBehaviour
     void BridgeDestroy()
     {
         transform.GetChild(iCount).gameObject.SetActive(false);
-        iCount++;
+
+        iCount--;
+        Destroy(BossStair);
+
+        if (iCount == 0)
+        {
+            Destroy(gameObject);
+            Destroy(BossHammer);
+            BossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+
+        }
         Debug.Log("Coroutine");
     }
 }

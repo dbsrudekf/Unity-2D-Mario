@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float jumpPower = 10.0f;
     bool bIsFloor = false;
     bool bIsOverPower = false;
+    bool bPause = false;
 
     float fPlayerHalfSize = 0.28f;
     float fWallHalfSize = 0.32f;
@@ -40,6 +41,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(bPause)
+        {
+            
+        }
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             //ºæ·¿»ý¼º          

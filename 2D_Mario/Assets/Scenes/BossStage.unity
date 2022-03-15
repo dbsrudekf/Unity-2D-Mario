@@ -7903,6 +7903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272659524}
   - component: {fileID: 272659525}
+  - component: {fileID: 272659526}
   m_Layer: 0
   m_Name: BridgeTileObject
   m_TagString: Bridge
@@ -7963,6 +7964,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.290934, y: 0.65802383}
   m_EdgeRadius: 0
+--- !u!114 &272659526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272659523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6940704a9dd5743995e797e026b8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BossStair: {fileID: 1780892491}
+  BossHammer: {fileID: 1871059949}
+  bCol: 0
 --- !u!1 &273863749
 GameObject:
   m_ObjectHideFlags: 0
@@ -23272,7 +23288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 979289220748934898, guid: 991ca8252ba470d448af1982a439c6e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.1
+      value: 32.03
       objectReference: {fileID: 0}
     - target: {fileID: 979289220748934898, guid: 991ca8252ba470d448af1982a439c6e9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23482,6 +23498,7 @@ MonoBehaviour:
   tBulletPos: {fileID: 1009406269}
   tBulletBackPos: {fileID: 1581834279}
   nextMove: 0
+  bIsHammer: 0
 --- !u!1 &808292486
 GameObject:
   m_ObjectHideFlags: 0
@@ -47401,7 +47418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e14fff07d77cec4a8c3442c3f5f8508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BridgeObj: {fileID: 272659523}
 --- !u!1 &1874015443
 GameObject:
   m_ObjectHideFlags: 0

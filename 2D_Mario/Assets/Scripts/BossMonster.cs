@@ -13,6 +13,7 @@ public class BossMonster : MonoBehaviour
     GameObject player;
 
     public int nextMove;
+    public bool bIsHammer = false;
     float fJumpPower = 6.0f;
     private void Awake()
     {
@@ -37,6 +38,10 @@ public class BossMonster : MonoBehaviour
             //nextMove = -1;
         }
         
+        if(bIsHammer)
+        {
+            nextMove = 0;
+        }
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
     }
 

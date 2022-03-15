@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
+    public bool bIsHammer = false;
     float fBulletDir = -1.0f;
     bool bFlipX = false;
     float fSpeed = 2.0f;
@@ -24,6 +25,10 @@ public class BossBullet : MonoBehaviour
     }
     private void Update()
     {
+        if(bIsHammer)
+        {
+            fBulletDir = 0;
+        }
         Vector2 dir = new Vector2(fBulletDir, 0);
         transform.Translate(dir * Time.deltaTime * 2.0f * fSpeed);
 
