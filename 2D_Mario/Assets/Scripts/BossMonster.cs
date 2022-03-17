@@ -41,8 +41,14 @@ public class BossMonster : MonoBehaviour
         if(bIsHammer)
         {
             nextMove = 0;
+            fJumpPower = 0;
+            
         }
-        rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+        else
+        {
+            rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+        }
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)

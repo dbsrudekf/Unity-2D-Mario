@@ -34,9 +34,9 @@ public class BossHammer : MonoBehaviour
         {
             GbossBridge.GetComponent<BossBridge>().bCol = true;
             GbossMonster.GetComponent<BossMonster>().bIsHammer = true;
-            GbossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            //GbossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             //GbossBullet.GetComponent<BossBullet>().bIsHammer = true;
-            spriteRender.enabled = true;
+            spriteRender.enabled = false;
 
         }
     }

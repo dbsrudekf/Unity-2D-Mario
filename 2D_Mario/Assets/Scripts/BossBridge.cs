@@ -43,7 +43,7 @@ public class BossBridge : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(BossHammer);
-            BossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            //BossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
 
         }
