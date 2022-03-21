@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     float fWallHalfSize = 0.32f;
 
     public GameObject BulletPrefab;
+    public GameManager gameManager;
 
     Rigidbody2D rRigidbody;
     SpriteRenderer spriteRenderer;
@@ -281,6 +282,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Castle")
         {
             SceneManager.LoadScene("BossStage");
+            //gameManager.SubStageIndex++;
         }
     }
     void OnAttack(Transform Monster)
