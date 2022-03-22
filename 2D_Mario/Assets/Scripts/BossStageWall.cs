@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossStageWall : MonoBehaviour
 {
     GameObject Child = null;
-    public GameManager gameManager;
     public GameObject prefabs;
 
     bool bCol = false;
@@ -27,8 +26,8 @@ public class BossStageWall : MonoBehaviour
                 Vector3 spawnPos = transform.position;
                 spawnPos.x = spawnPos.x - 0.1f;
                 GameObject instance = Instantiate(prefabs, spawnPos, Quaternion.identity);
-                gameManager.StageScore += 200;
-                gameManager.StageCoin += 1;
+                GameManager.Instance.StageScore += 200;
+                GameManager.Instance.StageCoin += 1;
                 bCol = true;
             }
         }
