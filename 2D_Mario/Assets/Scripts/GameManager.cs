@@ -11,11 +11,12 @@ public class GameManager : MonoBehaviour
     public int StageCoin = 0;
     public int StageIndex = 1;
     public int SubStageIndex = 1;
-    public int TimeLimit = 400;
+    public float TimeLimit = 400;
 
     public Text UIScore;
     public Text UICoin;
     public Text UIStage;
+    public Text UITime;
 
     private static GameManager instance = null;
 
@@ -50,6 +51,10 @@ public class GameManager : MonoBehaviour
     {
         UIScore.text = (TotalScore + StageScore).ToString();
         UICoin.text = (TotalCoin + StageCoin).ToString();
+        TimeLimit -= Time.deltaTime;
+        //TimeLimit = (int)TimeLimit;
+        UITime.text = ((int)TimeLimit).ToString();
+
         UIStage.text = StageIndex + " - " + SubStageIndex;
         if(SubStageIndex > 4)
         {

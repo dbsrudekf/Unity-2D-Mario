@@ -282,6 +282,7 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("BossStage");
             GameManager.Instance.SubStageIndex++;
+            GameManager.Instance.TimeLimit = 400;
         }
     }
     void OnAttack(Transform Monster)
