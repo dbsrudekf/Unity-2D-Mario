@@ -10126,7 +10126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000955205235769920, guid: c44ac94371dff9d479421df90de9fb72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.53
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1000955205235769920, guid: c44ac94371dff9d479421df90de9fb72, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43576,6 +43576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52454d100679a68499178733aaa7bbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bIsBossStage: 0
 --- !u!1 &1653208666
 GameObject:
   m_ObjectHideFlags: 0
@@ -56642,7 +56643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000955205235769920, guid: c44ac94371dff9d479421df90de9fb72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.53
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1000955205235769920, guid: c44ac94371dff9d479421df90de9fb72, type: 3}
       propertyPath: m_LocalPosition.z

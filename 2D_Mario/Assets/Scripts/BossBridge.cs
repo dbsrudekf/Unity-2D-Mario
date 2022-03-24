@@ -26,7 +26,6 @@ public class BossBridge : MonoBehaviour
         
         if (bCol && fCurrentTime > fLimitTime)
         {
-            Debug.Log("Col");
             BridgeDestroy();
             fCurrentTime = 0.0f;
         }
@@ -47,6 +46,5 @@ public class BossBridge : MonoBehaviour
 
 
         }
-        Debug.Log("Coroutine");
     }
 }

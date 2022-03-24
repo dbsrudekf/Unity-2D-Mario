@@ -12,9 +12,10 @@ public class TutleMonster : MonoBehaviour
     public int nextMove;
     public int ColliderCount = 0;
     float fTime = 0.0f;
-    float fLimitTime = 0.5f;
+    float fLimitTime = 2.0f;
 
     bool bIsDeath = false;
+    bool bIsDoubleDeath = false;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -27,6 +28,15 @@ public class TutleMonster : MonoBehaviour
     private void FixedUpdate()
     {
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+
+        if(bIsDoubleDeath)
+        {
+            fTime += Time.deltaTime;
+            if (fTime > fLimitTime)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
     void MovePattern()
     {
@@ -52,7 +62,7 @@ public class TutleMonster : MonoBehaviour
     {
         if(anim.GetBool("IsAttack"))
         {
-            nextMove = 2;
+            nextMove = 4;
         }
         else
         {
@@ -112,7 +122,7 @@ public class TutleMonster : MonoBehaviour
 
     public void TurtleDamaged(Vector2 position)
     {
-        bIsDeath = true;
+        bIsDoubleDeath = true;
         if (position.x > gameObject.transform.position.x)
         {
             nextMove = -1;
@@ -126,11 +136,11 @@ public class TutleMonster : MonoBehaviour
         rigid.velocity = new Vector2(nextMove, 2);
         col.isTrigger = true;
 
-        fTime += Time.deltaTime;
-        if (fTime > fLimitTime)
-        {
-            Destroy(gameObject);
-        }
+        //fTime += Time.deltaTime;
+        //if (fTime > fLimitTime)
+        //{
+        //    Destroy(gameObject);
+        //}
         spriteRenderer.flipY = true;
 
     }

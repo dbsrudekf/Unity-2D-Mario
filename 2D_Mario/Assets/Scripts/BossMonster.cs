@@ -15,6 +15,7 @@ public class BossMonster : MonoBehaviour
     public int nextMove;
     public bool bIsHammer = false;
     float fJumpPower = 6.0f;
+    float fBossDeathHeight;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -22,11 +23,17 @@ public class BossMonster : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Mario");
         nextMove = -1;
+        fBossDeathHeight = -4.0f;
         Invoke("BulletCreate", 2.2f);
     }
 
     private void FixedUpdate()
     {
+        if(transform.position.y < fBossDeathHeight)
+        {
+            Destroy(gameObject);
+        }
+
         if(player.transform.position.x > transform.position.x)
         {
             spriteRenderer.flipX = true;

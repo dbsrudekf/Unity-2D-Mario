@@ -31,9 +31,21 @@ public class MushRoomMonster : MonoBehaviour
             rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
         }
         
-        if(anim.GetBool("IsDeath"))
+        if(anim.GetBool("IsDeath") || bIsDeath)
         {
             fTime += Time.deltaTime;
+            Debug.Log(fTime);
+
+            if(bIsDeath)
+            {
+                fLimitTime = 2.0f;
+            }
+
+            else
+            {
+                fLimitTime = 0.5f;
+            }
+
             if (fTime > fLimitTime)
             {
                 Destroy(gameObject);
@@ -75,11 +87,11 @@ public class MushRoomMonster : MonoBehaviour
         rigid.velocity = new Vector2(nextMove, 2);
         col.isTrigger = true;
 
-        fTime += Time.deltaTime;
-        if (fTime > fLimitTime)
-        {
-            Destroy(gameObject);
-        }
+        //fTime += Time.deltaTime;
+        //if (fTime > fLimitTime)
+        //{
+        //    Destroy(gameObject);
+        //}
         spriteRenderer.flipY = true;
 
     }

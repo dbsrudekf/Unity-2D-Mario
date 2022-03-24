@@ -47,8 +47,11 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
-            //뷸렛생성          
-            GameObject instance = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+            if(anim.GetBool("IsFireItem"))
+            {
+                //뷸렛생성          
+                GameObject instance = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+            }
         }
         if(Input.GetButtonUp("Horizontal"))
         {
@@ -269,20 +272,29 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        fTime += Time.deltaTime;
+        //fTime += Time.deltaTime;
 
-        if (fTime > fLimitTime && collision.gameObject.tag == "MushRoomItem")
-        {
-            anim.SetBool("IsMushroomItem", true);
-            anim.SetBool("IsJumping", false);
-            Destroy(collision.gameObject);
-        }
+        //if (fTime > fLimitTime && collision.gameObject.tag == "MushRoomItem")
+        //{
+        //    anim.SetBool("IsMushroomItem", true);
+        //    anim.SetBool("IsJumping", false);
+        //    Destroy(collision.gameObject);
+        //}
 
         if (collision.gameObject.tag == "Castle")
         {
             SceneManager.LoadScene("BossStage");
             GameManager.Instance.SubStageIndex++;
             GameManager.Instance.TimeLimit = 400;
+
+            Vector3 ResponPos = new Vector3(-4.88f, -0.69f, -1f);
+            transform.position = ResponPos;
+
+            //보스스테이지 진입시 카메라 높이 조정
+            GameObject CameraObj = GameObject.Find("Main Camera");
+            Camera CameraInstance = CameraObj.gameObject.GetComponent<Camera>();
+            CameraInstance.bIsBossStage = true;
+
         }
     }
     void OnAttack(Transform Monster)

@@ -7,6 +7,8 @@ public class Camera : MonoBehaviour
 
     GameObject Player;
     static public Camera instance;
+
+    public bool bIsBossStage;
     private void Awake()
     {
         if(instance == null)
@@ -18,6 +20,8 @@ public class Camera : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        bIsBossStage = false;
     }
 
     void Start()
@@ -31,6 +35,14 @@ public class Camera : MonoBehaviour
     {
         Vector3 PlayerPos = Player.transform.position;
 
-        transform.position = new Vector3(PlayerPos.x, transform.position.y, transform.position.z);
+        if (bIsBossStage)
+        {
+            transform.position = new Vector3(PlayerPos.x, 0.8f , transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(PlayerPos.x, transform.position.y, transform.position.z);
+        }
+        
     }
 }
