@@ -101,6 +101,12 @@ public class TutleMonster : MonoBehaviour
 
     public void OnDamaged()
     {
+        if(!bIsDeath)
+        {
+            GameManager.Instance.StageScore += 200;
+        }
+        
+
         gameObject.layer = 12;
         anim.SetBool("IsDeath", true);
         col.size = new Vector2(0.17f, 0.16f);
@@ -108,6 +114,7 @@ public class TutleMonster : MonoBehaviour
         ColliderCount++;
         bIsDeath = true;
 
+        
 
         if (ColliderCount != 0 && ColliderCount % 2 == 0)
         {
@@ -122,6 +129,8 @@ public class TutleMonster : MonoBehaviour
 
     public void TurtleDamaged(Vector2 position)
     {
+        GameManager.Instance.StageScore += 200;
+
         bIsDoubleDeath = true;
         if (position.x > gameObject.transform.position.x)
         {

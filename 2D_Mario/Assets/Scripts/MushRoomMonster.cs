@@ -68,11 +68,15 @@ public class MushRoomMonster : MonoBehaviour
         //Death 애니메이션
         anim.SetBool("IsDeath", true);
 
+        GameManager.Instance.StageScore += 100;
+
         //몇초뒤 사라짐
     }
 
     public void TurtleDamaged(Vector2 position)
     {
+        GameManager.Instance.StageScore += 100;
+
         bIsDeath = true;
         if(position.x > gameObject.transform.position.x)
         {

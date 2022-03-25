@@ -6,7 +6,11 @@ public class FireBullet : MonoBehaviour
 {
     float fSpeed = 5.0f;
     float fFireBulletDir = 0.0f;
+    float fCurTime = 0.0f;
+    float fLimitTime = 10.0f;
+
     Rigidbody2D rigid;
+
     bool bFlipX = false;
     private void Awake()
     {
@@ -34,6 +38,16 @@ public class FireBullet : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        fCurTime += Time.deltaTime;
+        
+        if(fCurTime > fLimitTime)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "MonsterMushroom")
@@ -47,6 +61,11 @@ public class FireBullet : MonoBehaviour
         {
             TutleMonster TurtleMonster = collision.gameObject.GetComponent<TutleMonster>();
             TurtleMonster.TurtleDamaged(gameObject.transform.position);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Obstacle")
+        {
             Destroy(gameObject);
         }
     }

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public Text UICoin;
     public Text UIStage;
     public Text UITime;
+    public Text BossStageMsg;
+    public Text BossStageNextMsg;
 
     private static GameManager instance = null;
 
@@ -40,11 +42,14 @@ public class GameManager : MonoBehaviour
 
         StageIndex = 1;
         SubStageIndex = 1;
-        
+        BossStageNextMsg.text = "BUT OUR PRINCESS IS IN ANOTHER CASTLE!";
+        BossStageMsg.text = "THANK YOU MARIO!";
     }
 
     private void Start()
     {
+        BossStageMsg.enabled = false;
+        BossStageNextMsg.enabled = false;
         
     }
     private void Update()

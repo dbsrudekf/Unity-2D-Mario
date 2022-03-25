@@ -210,6 +210,7 @@ public class Player : MonoBehaviour
                     || transform.position.x < collision.transform.position.x + fWallHalfSize)
                 {
                     Destroy(collision.gameObject);
+                    GameManager.Instance.StageScore += 100;
                 }
             }
 

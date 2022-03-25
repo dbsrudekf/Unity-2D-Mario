@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bec0e1f4e24ec409e514eff322fbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   prefabs: {fileID: 5628993403714370340, guid: 89e9a9fc5eb5c67468ea55c69437cf25, type: 3}
 --- !u!61 &1000955205235769921
 BoxCollider2D:
@@ -84,13 +83,13 @@ GameObject:
   - component: {fileID: 1000955206497517213}
   - component: {fileID: 1000955206497517212}
   - component: {fileID: 1000955206497517282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossStageWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1000955206497517213
 Transform:
   m_ObjectHideFlags: 0
