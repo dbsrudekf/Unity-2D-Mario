@@ -8137,6 +8137,7 @@ MonoBehaviour:
   BossStair: {fileID: 1780892491}
   BossHammer: {fileID: 1871059949}
   BossMonster: {fileID: 807966202}
+  BossBullet: {fileID: 5584921910902977160, guid: efdbedf1e2ca7ea4b8bae71b1fde538b, type: 3}
   bCol: 0
 --- !u!1 &273863749
 GameObject:
@@ -24174,10 +24175,10 @@ GameObject:
   m_Component:
   - component: {fileID: 807966207}
   - component: {fileID: 807966206}
-  - component: {fileID: 807966205}
-  - component: {fileID: 807966204}
   - component: {fileID: 807966203}
   - component: {fileID: 807966208}
+  - component: {fileID: 807966205}
+  - component: {fileID: 807966204}
   m_Layer: 0
   m_Name: TurtleBossMonster
   m_TagString: BossMonster
@@ -24204,28 +24205,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &807966204
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807966202}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &807966205
+--- !u!61 &807966204
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24251,6 +24231,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!50 &807966205
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807966202}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!212 &807966206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24335,6 +24336,8 @@ MonoBehaviour:
   tBulletBackPos: {fileID: 1581834279}
   nextMove: 0
   bIsHammer: 0
+  fTime: 0
+  fLimitTime: 3
 --- !u!1 &808292486
 GameObject:
   m_ObjectHideFlags: 0
@@ -32095,7 +32098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6029139672839946884, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6029139672839946886, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
       propertyPath: m_RootOrder
@@ -49528,6 +49531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e14fff07d77cec4a8c3442c3f5f8508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GbossBullet: {fileID: 5584921910902977160, guid: efdbedf1e2ca7ea4b8bae71b1fde538b, type: 3}
 --- !u!1 &1874015443
 GameObject:
   m_ObjectHideFlags: 0

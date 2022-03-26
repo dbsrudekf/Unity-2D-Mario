@@ -7,6 +7,7 @@ public class BossBridge : MonoBehaviour
     public GameObject BossStair;
     public GameObject BossHammer;
     public GameObject BossMonster;
+    public GameObject BossBullet;
     BoxCollider2D col;
     float fCurrentTime = 0.0f;
     float fLimitTime = 0.1f;
@@ -42,9 +43,11 @@ public class BossBridge : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(BossHammer);
-            //BossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-
-
+            BossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            Debug.Log("rigid");
+            BossBullet.GetComponent<BossBullet>().bIsHammer = false;
+            Debug.Log("Bullet");
+            Debug.Log(BossBullet.GetComponent<BossBullet>().bIsHammer);
         }
     }
 }

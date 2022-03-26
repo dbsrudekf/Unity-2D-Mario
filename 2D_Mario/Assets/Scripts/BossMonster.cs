@@ -14,8 +14,11 @@ public class BossMonster : MonoBehaviour
 
     public int nextMove;
     public bool bIsHammer = false;
+    bool bIsJump = false;
     float fJumpPower = 6.0f;
     float fBossDeathHeight;
+    public float fTime = 0.0f;
+    public float fLimitTime = 3.0f;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -29,7 +32,16 @@ public class BossMonster : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(transform.position.y < fBossDeathHeight)
+        fTime += Time.deltaTime;
+
+        if (fTime > fLimitTime)
+        {
+            rigid.AddForce(Vector2.up * fJumpPower, ForceMode2D.Impulse);
+            fTime = 0.0f;
+        }
+
+
+        if (transform.position.y < fBossDeathHeight)
         {
             Destroy(gameObject);
         }
@@ -60,10 +72,7 @@ public class BossMonster : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bridge")
-        {
-            rigid.AddForce(Vector2.up * fJumpPower, ForceMode2D.Impulse);
-        }
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
