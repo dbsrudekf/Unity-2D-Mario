@@ -32098,7 +32098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6029139672839946884, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6029139672839946886, guid: 960f54a9ed06c5b4fa087882b1cbe990, type: 3}
       propertyPath: m_RootOrder
@@ -49531,7 +49531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e14fff07d77cec4a8c3442c3f5f8508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GbossBullet: {fileID: 5584921910902977160, guid: efdbedf1e2ca7ea4b8bae71b1fde538b, type: 3}
 --- !u!1 &1874015443
 GameObject:
   m_ObjectHideFlags: 0

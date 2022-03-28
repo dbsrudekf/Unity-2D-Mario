@@ -10,11 +10,13 @@ public class BossBullet : MonoBehaviour
     bool bFlipX = false;
     float fSpeed = 2.0f;
 
+    GameObject GBossMonster;
+
     private void Awake()
     {
         bIsHammer = false;
-        GameObject BossMonster = GameObject.Find("TurtleBossMonster");
-        bFlipX = BossMonster.GetComponent<SpriteRenderer>().flipX;
+        GBossMonster = GameObject.Find("TurtleBossMonster");
+        bFlipX = GBossMonster.GetComponent<SpriteRenderer>().flipX;
        
         if (bFlipX)
         {
@@ -29,14 +31,28 @@ public class BossBullet : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (GBossMonster)
+        {
+            if (GBossMonster.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)
+            {
+                bIsHammer = true;
+            }
+            else
+            {
+                bIsHammer = false;
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         if(bIsHammer)
         {
-            //fTempBullet = fBulletDir;
             fSpeed = 0.0f;
         }
         else
         {
-            //fBulletDir = fTempBullet;
             fSpeed = 2.0f;
         }
 

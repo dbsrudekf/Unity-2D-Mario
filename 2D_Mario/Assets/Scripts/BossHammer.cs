@@ -6,7 +6,7 @@ public class BossHammer : MonoBehaviour
 {
     GameObject GbossBridge;
     GameObject GbossMonster;
-    public GameObject GbossBullet;
+    //public GameObject GbossBullet;
     SpriteRenderer spriteRender;
 
     float fCurrentTime = 0.0f;
@@ -19,7 +19,6 @@ public class BossHammer : MonoBehaviour
         bCol = false;
         GbossBridge = GameObject.Find("BridgeTileObject");
         GbossMonster = GameObject.Find("TurtleBossMonster");
-        
         spriteRender = GetComponent<SpriteRenderer>();
     }
 
@@ -35,8 +34,7 @@ public class BossHammer : MonoBehaviour
             GbossBridge.GetComponent<BossBridge>().bCol = true;
             GbossMonster.GetComponent<BossMonster>().bIsHammer = true;
             GbossMonster.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            GbossBullet.GetComponent<BossBullet>().bIsHammer = true;
-            Debug.Log(GbossBullet.GetComponent<BossBullet>().bIsHammer);
+            //GbossBullet.GetComponent<BossBullet>().bIsHammer = true;
             spriteRender.enabled = false;
 
         }
