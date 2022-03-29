@@ -9,6 +9,12 @@ public class MushRoomMonster : MonoBehaviour
     Animator anim;
     BoxCollider2D col;
 
+    public GameObject ScoreUIPos;
+    public GameObject canvas;
+    public GameObject prefabScoreUI;
+    RectTransform ScoreUI;
+    float fScoreUIxPos = 70.0f;
+
     public int nextMove;
     float fTime = 0.0f;
     float fLimitTime = 0.5f;
@@ -21,10 +27,17 @@ public class MushRoomMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         col = GetComponent<BoxCollider2D>();
         Invoke("MovePattern", 5);
+
+        ScoreUI = Instantiate(prefabScoreUI, canvas.transform).GetComponent<RectTransform>();
     }
 
     private void FixedUpdate()
     {
+        Vector2 _ScoreUIPos = Camera.main.WorldToScreenPoint(ScoreUIPos.transform.position);
+        
+        _ScoreUIPos.x = _ScoreUIPos.x + fScoreUIxPos;
+        
+        ScoreUI.position = _ScoreUIPos;
         
         if (!anim.GetBool("IsDeath"))
         {
@@ -34,7 +47,6 @@ public class MushRoomMonster : MonoBehaviour
         if(anim.GetBool("IsDeath") || bIsDeath)
         {
             fTime += Time.deltaTime;
-            Debug.Log(fTime);
 
             if(bIsDeath)
             {
@@ -51,6 +63,7 @@ public class MushRoomMonster : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
     }
 
     void MovePattern()
@@ -70,6 +83,9 @@ public class MushRoomMonster : MonoBehaviour
 
         GameManager.Instance.StageScore += 100;
 
+        //Instantiate(ScoreUI, ScoreUIPos.transform.position, Quaternion.identity);
+
+        Debug.Log("Death");
         //몇초뒤 사라짐
     }
 

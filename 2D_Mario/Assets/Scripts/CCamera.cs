@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class CCamera : MonoBehaviour
 {
 
     GameObject Player;
-    static public Camera instance;
+    static public CCamera instance;
 
     public bool bIsBossStage;
     private void Awake()

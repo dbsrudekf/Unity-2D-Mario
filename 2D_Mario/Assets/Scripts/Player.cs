@@ -293,7 +293,7 @@ public class Player : MonoBehaviour
 
             //보스스테이지 진입시 카메라 높이 조정
             GameObject CameraObj = GameObject.Find("Main Camera");
-            Camera CameraInstance = CameraObj.gameObject.GetComponent<Camera>();
+            CCamera CameraInstance = CameraObj.gameObject.GetComponent<CCamera>();
             CameraInstance.bIsBossStage = true;
 
         }
