@@ -12,13 +12,14 @@ public class MushRoomMonster : MonoBehaviour
     public GameObject ScoreUIPos;
     public GameObject canvas;
     public GameObject prefabScoreUI;
-    RectTransform ScoreUI;
+    GameObject ScoreUI;
     float fScoreUIxPos = 70.0f;
 
     public int nextMove;
     float fTime = 0.0f;
     float fLimitTime = 0.5f;
     bool bIsDeath = false;
+    bool bIsScoreUI = false;
 
     private void Awake()
     {
@@ -28,16 +29,11 @@ public class MushRoomMonster : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
         Invoke("MovePattern", 5);
 
-        ScoreUI = Instantiate(prefabScoreUI, canvas.transform).GetComponent<RectTransform>();
     }
 
     private void FixedUpdate()
     {
-        Vector2 _ScoreUIPos = Camera.main.WorldToScreenPoint(ScoreUIPos.transform.position);
         
-        _ScoreUIPos.x = _ScoreUIPos.x + fScoreUIxPos;
-        
-        ScoreUI.position = _ScoreUIPos;
         
         if (!anim.GetBool("IsDeath"))
         {
@@ -48,7 +44,26 @@ public class MushRoomMonster : MonoBehaviour
         {
             fTime += Time.deltaTime;
 
-            if(bIsDeath)
+            if(!bIsScoreUI)
+            {
+                //ScoreUI = Instantiate(prefabScoreUI, canvas.transform).GetComponent<RectTransform>();
+                ScoreUI = Instantiate(prefabScoreUI, canvas.transform);
+
+                Vector2 _ScoreUIPos = Camera.main.WorldToScreenPoint(ScoreUIPos.transform.position);
+
+                _ScoreUIPos.x = _ScoreUIPos.x + fScoreUIxPos;
+
+                ScoreUI.transform.position = _ScoreUIPos;
+
+                bIsScoreUI = true;
+            }
+
+            if (ScoreUI)
+            {
+                ScoreUI.transform.Translate(new Vector2(0, 0.5f));
+            }
+
+            if (bIsDeath)
             {
                 fLimitTime = 2.0f;
             }
@@ -58,6 +73,10 @@ public class MushRoomMonster : MonoBehaviour
                 fLimitTime = 0.5f;
             }
 
+            if(fTime > 0.5f)
+            {
+                Destroy(ScoreUI);
+            }
             if (fTime > fLimitTime)
             {
                 Destroy(gameObject);
@@ -83,9 +102,7 @@ public class MushRoomMonster : MonoBehaviour
 
         GameManager.Instance.StageScore += 100;
 
-        //Instantiate(ScoreUI, ScoreUIPos.transform.position, Quaternion.identity);
 
-        Debug.Log("Death");
         //몇초뒤 사라짐
     }
 
