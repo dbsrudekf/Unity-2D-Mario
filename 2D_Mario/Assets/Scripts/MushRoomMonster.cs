@@ -14,12 +14,14 @@ public class MushRoomMonster : MonoBehaviour
     public GameObject prefabScoreUI;
     GameObject ScoreUI;
     float fScoreUIxPos = 70.0f;
+    float fScoreUILimitTime = 0.5f;
+    bool bIsScoreUI = false;
 
     public int nextMove;
     float fTime = 0.0f;
     float fLimitTime = 0.5f;
     bool bIsDeath = false;
-    bool bIsScoreUI = false;
+    
 
     private void Awake()
     {
@@ -73,7 +75,7 @@ public class MushRoomMonster : MonoBehaviour
                 fLimitTime = 0.5f;
             }
 
-            if(fTime > 0.5f)
+            if(fTime > fScoreUILimitTime)
             {
                 Destroy(ScoreUI);
             }

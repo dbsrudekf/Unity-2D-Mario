@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5186130058637497983}
   - component: {fileID: 5186130058637497955}
   - component: {fileID: 5186130058637497954}
-  m_Layer: 10
+  m_Layer: 17
   m_Name: FlowerItemR
   m_TagString: FireFlowerItem
   m_Icon: {fileID: 0}

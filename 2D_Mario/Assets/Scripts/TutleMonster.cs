@@ -9,6 +9,14 @@ public class TutleMonster : MonoBehaviour
     SpriteRenderer spriteRenderer;
     BoxCollider2D col;
 
+    public GameObject ScoreUIPos;
+    public GameObject canvas;
+    public GameObject prefabScoreUI;
+    GameObject ScoreUI;
+    float fScoreUIxPos = 70.0f;
+    float fScoreUILimitTime = 0.5f;
+    bool bIsScoreUI = false;
+
     public int nextMove;
     public int ColliderCount = 0;
     float fTime = 0.0f;
@@ -29,13 +37,78 @@ public class TutleMonster : MonoBehaviour
     {
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
+        if(bIsDeath)
+        {
+            fTime += Time.deltaTime;
+
+            if (!bIsScoreUI)
+            {
+                //ScoreUI = Instantiate(prefabScoreUI, canvas.transform).GetComponent<RectTransform>();
+                ScoreUI = Instantiate(prefabScoreUI, canvas.transform);
+
+                Vector2 _ScoreUIPos = Camera.main.WorldToScreenPoint(ScoreUIPos.transform.position);
+
+                _ScoreUIPos.x = _ScoreUIPos.x + fScoreUIxPos;
+
+                ScoreUI.transform.position = _ScoreUIPos;
+
+                bIsScoreUI = true;
+            }
+
+            if (ScoreUI)
+            {
+                ScoreUI.transform.Translate(new Vector2(0, 0.5f));
+            }
+
+            if (fTime > fScoreUILimitTime)
+            {
+                Destroy(ScoreUI);
+                fTime = 0;
+            }
+        }
+
         if(bIsDoubleDeath)
         {
             fTime += Time.deltaTime;
+
+            //Debug.Log("bIsDouble");
+            //Debug.Log(bIsScoreUI);
+            if (!bIsScoreUI)
+            {
+                //ScoreUI = Instantiate(prefabScoreUI, canvas.transform).GetComponent<RectTransform>();
+                ScoreUI = Instantiate(prefabScoreUI, canvas.transform);
+
+                Vector2 _ScoreUIPos = Camera.main.WorldToScreenPoint(ScoreUIPos.transform.position);
+
+                _ScoreUIPos.x = _ScoreUIPos.x + fScoreUIxPos;
+
+                ScoreUI.transform.position = _ScoreUIPos;
+
+                bIsScoreUI = true;
+
+                Debug.Log("ScoreUI");
+            }
+
+            if (ScoreUI)
+            {
+                ScoreUI.transform.Translate(new Vector2(0, 0.5f));
+            }
+
+            if (fTime > fScoreUILimitTime)
+            {
+                Destroy(ScoreUI);
+                //bIsScoreUI = false;
+                //fTime = 0;
+            }
+
             if (fTime > fLimitTime)
             {
                 Destroy(gameObject);
+                
+                bIsDoubleDeath = false;
             }
+
+            
         }
     }
     void MovePattern()
@@ -131,6 +204,7 @@ public class TutleMonster : MonoBehaviour
     {
         GameManager.Instance.StageScore += 200;
 
+        Debug.Log("Second");
         bIsDoubleDeath = true;
         if (position.x > gameObject.transform.position.x)
         {

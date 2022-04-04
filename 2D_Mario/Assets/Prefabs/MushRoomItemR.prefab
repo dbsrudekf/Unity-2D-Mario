@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6651958317590147574}
   - component: {fileID: 5297914685414131958}
   - component: {fileID: 2577327133605777502}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: MushRoomItemR
   m_TagString: MushRoomItem
   m_Icon: {fileID: 0}
