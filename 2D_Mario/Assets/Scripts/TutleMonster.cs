@@ -10,7 +10,7 @@ public class TutleMonster : MonoBehaviour
     BoxCollider2D col;
 
     public GameObject ScoreUIPos;
-    public GameObject canvas;
+    GameObject canvas;
     public GameObject prefabScoreUI;
     GameObject ScoreUI;
     float fScoreUIxPos = 70.0f;
@@ -31,6 +31,7 @@ public class TutleMonster : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
         Invoke("MovePattern", 3);
+        canvas = GameObject.Find("Canvas");
     }
 
     private void FixedUpdate()

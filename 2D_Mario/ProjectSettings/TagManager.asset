@@ -18,6 +18,7 @@ TagManager:
   - Bridge
   - FrontBossLine
   - BackBossLine
+  - BossBullet
   layers:
   - Default
   - TransparentFX

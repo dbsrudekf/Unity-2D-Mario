@@ -251,7 +251,25 @@ public class Player : MonoBehaviour
             }
 
         }
-        if(collision.gameObject.tag == "FireFlowerItem")
+
+        if (collision.gameObject.tag == "BossMonster")
+        {
+            if (!bIsOverPower)
+            {
+                OnDamaged();
+            }
+        }
+
+        if (collision.gameObject.tag == "BossBullet")
+        {
+            if (!bIsOverPower)
+            {
+                OnDamaged();
+                Destroy(collision.gameObject);
+            }
+        }
+
+        if (collision.gameObject.tag == "FireFlowerItem")
         {
             anim.SetBool("IsFireItem", true);
             Destroy(collision.gameObject);
