@@ -36,6 +36,8 @@ public class ItemWall : MonoBehaviour
 
             Vector3 spawnPos = transform.position;
 
+            spawnPos.z = -1;
+
             GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
             //instance.transform.parent = gameObject.transform;
 
