@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     public Text BossStageMsg;
     public Text BossStageNextMsg;
 
+    public AudioSource audioSource;
+    public AudioClip audioStageOne;
+    public AudioClip audioCuppaStage;
+
+
     private static GameManager instance = null;
 
     public static GameManager Instance
@@ -44,13 +49,18 @@ public class GameManager : MonoBehaviour
         SubStageIndex = 1;
         BossStageNextMsg.text = "BUT OUR PRINCESS IS IN ANOTHER CASTLE!";
         BossStageMsg.text = "THANK YOU MARIO!";
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
+        
         BossStageMsg.enabled = false;
         BossStageNextMsg.enabled = false;
-        
+        audioSource.clip = audioStageOne;
+        audioSource.Play();
+
+
     }
     private void Update()
     {

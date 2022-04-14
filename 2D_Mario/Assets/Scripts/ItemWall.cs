@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ItemWall : MonoBehaviour
 {
+    AudioSource audioSource;
+    public AudioClip audioItem;
+
     public GameObject[] prefabs;
 
     Animator anim;
@@ -13,6 +16,7 @@ public class ItemWall : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +29,10 @@ public class ItemWall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && bItemOn && transform.position.y > collision.transform.position.y)
         {
+            audioSource.clip = audioItem;
+
+            audioSource.Play();
+
             bItemOn = false;
             
             anim.SetBool("IsItemOff", true);

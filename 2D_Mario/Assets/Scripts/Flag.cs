@@ -20,7 +20,7 @@ public class Flag : MonoBehaviour
 
         if (bIsCol)
         {
-            pos.y -= 1 * Time.deltaTime;
+            pos.y -= 1 * Time.deltaTime * 2;
             pos.z = -1.4f;
             transform.position = pos;
             //Debug.Log("충돌 완료");

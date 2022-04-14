@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    public AudioClip audioCoin;
+    AudioSource audioSource;
 
     GameObject ScoreUIPos;
     public GameObject prefabScoreUI;
@@ -20,6 +22,9 @@ public class Coin : MonoBehaviour
         GameManager.Instance.StageScore += 100;
         GameManager.Instance.StageCoin += 1;
         canvas = GameObject.Find("Canvas");
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = audioCoin;
+        audioSource.Play();
     }
 
     private void FixedUpdate()

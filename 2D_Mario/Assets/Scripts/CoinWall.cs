@@ -32,6 +32,7 @@ public class CoinWall : MonoBehaviour
             {
                 Vector3 spawnPos = transform.position;
                 spawnPos.x = spawnPos.x + 0.05f;
+                spawnPos.z = -2;
                 GameObject instance = Instantiate(prefabs, spawnPos, Quaternion.identity);
                 iCount++;
             }

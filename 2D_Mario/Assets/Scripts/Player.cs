@@ -23,6 +23,43 @@ public class Player : MonoBehaviour
     Animator anim;
     BoxCollider2D BoxCollider;
 
+    AudioSource audioSource;
+    public AudioClip audioSmallJump;
+    public AudioClip audioBigJump;
+    public AudioClip audioWall;
+    public AudioClip audioFlag;
+    public AudioClip audioItem;
+    public AudioClip audioFireItem;
+
+
+    void PlayerSound(string Action)
+    {
+        switch(Action)
+        {
+            case "SmallJump":
+                audioSource.clip = audioSmallJump;
+                break;
+            case "BigJump":
+                audioSource.clip = audioBigJump;
+                break;
+            case "Wall":
+                audioSource.clip = audioWall;
+                break;
+            case "Flag":
+                audioSource.clip = audioFlag;
+                break;
+            case "Item":
+                audioSource.clip = audioItem;
+                break;
+            case "FireItem":
+                audioSource.clip = audioFireItem;
+                break;
+
+
+        }
+        audioSource.Play();
+    }
+
 
     // Start is called before the first frame update
     void Awake()
@@ -31,6 +68,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         BoxCollider = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -51,6 +89,7 @@ public class Player : MonoBehaviour
             {
                 //ºæ·¿»ý¼º          
                 GameObject instance = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+                PlayerSound("FireItem");
             }
         }
         if(Input.GetButtonUp("Horizontal"))
@@ -70,6 +109,7 @@ public class Player : MonoBehaviour
             {
                 rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 anim.SetBool("IsBigJumping", true);
+                PlayerSound("BigJump");
             }
             else
             {
@@ -77,12 +117,14 @@ public class Player : MonoBehaviour
                 {
                     rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                     anim.SetBool("IsJumping", true);
+                    PlayerSound("SmallJump");
                 }
                 else
                 {
                     rRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                     anim.SetBool("IsJumping", true);
                     anim.SetBool("IsWalkingFinish", false);
+                    PlayerSound("SmallJump");
                 }
 
             }
@@ -211,12 +253,14 @@ public class Player : MonoBehaviour
                 {
                     Destroy(collision.gameObject);
                     GameManager.Instance.StageScore += 100;
+                    PlayerSound("Wall");
                 }
             }
 
         }
         if(collision.gameObject.tag == "MushRoomItem")
         {
+            PlayerSound("Item");
             anim.SetBool("IsMushroomItem", true);
             anim.SetBool("IsJumping", false);
             Destroy(collision.gameObject);
@@ -281,11 +325,14 @@ public class Player : MonoBehaviour
             {
                 anim.SetBool("IsBigFireUpgrade", true);
             }
+            PlayerSound("Item");
         }
         if(collision.gameObject.tag == "Flag")
         {
             anim.SetBool("IsFlag", true);
             transform.position = new Vector3(59.7f, transform.position.y, transform.position.z);
+            PlayerSound("Flag");
+            GameManager.Instance.audioSource.Stop();
         }
        
     }
@@ -303,6 +350,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Castle")
         {
             SceneManager.LoadScene("BossStage");
+
+            GameManager.Instance.audioSource.clip = GameManager.Instance.audioCuppaStage;
+            GameManager.Instance.audioSource.Play();
             GameManager.Instance.SubStageIndex++;
             GameManager.Instance.TimeLimit = 400;
 
