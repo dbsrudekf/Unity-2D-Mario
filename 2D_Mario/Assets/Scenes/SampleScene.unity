@@ -13266,17 +13266,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1806095779264649503, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 2073340347}
     - target: {fileID: 2662920403463266993, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
       propertyPath: m_Name
       value: MushroomEnemyR (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2662920403463266993, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4886451487390310489, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
       propertyPath: m_RootOrder
@@ -13320,10 +13312,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4886451487390310489, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142055504730225291, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
-      propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -28160,10 +28148,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1806095779264649503, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 2073340347}
     - target: {fileID: 2662920403463266993, guid: db1a8349565e3f84ca2edf6702bdb9d4, type: 3}
       propertyPath: m_Name
       value: MushroomEnemyR
@@ -30754,7 +30738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 979289220748934898, guid: 991ca8252ba470d448af1982a439c6e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.79
+      value: 19.67
       objectReference: {fileID: 0}
     - target: {fileID: 979289220748934898, guid: 991ca8252ba470d448af1982a439c6e9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31296,10 +31280,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9097277172352702465, guid: 6079e2c22e0e0944eada9090f131ad41, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 2073340347}
     - target: {fileID: 9097277172352702467, guid: 6079e2c22e0e0944eada9090f131ad41, type: 3}
       propertyPath: m_RootOrder
       value: 12

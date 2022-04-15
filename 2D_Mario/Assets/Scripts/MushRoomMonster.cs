@@ -21,7 +21,10 @@ public class MushRoomMonster : MonoBehaviour
     float fTime = 0.0f;
     float fLimitTime = 0.5f;
     bool bIsDeath = false;
-    
+
+    AudioSource audioSource;
+    public AudioClip audioMonsterDead;
+
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class MushRoomMonster : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         col = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         Invoke("MovePattern", 5);
         canvas = GameObject.Find("Canvas");
     }
@@ -104,13 +108,17 @@ public class MushRoomMonster : MonoBehaviour
 
         GameManager.Instance.StageScore += 100;
 
-
+        audioSource.clip = audioMonsterDead;
+        audioSource.Play();
         //몇초뒤 사라짐
     }
 
     public void TurtleDamaged(Vector2 position)
     {
         GameManager.Instance.StageScore += 100;
+
+        audioSource.clip = audioMonsterDead;
+        audioSource.Play();
 
         bIsDeath = true;
         if(position.x > gameObject.transform.position.x)

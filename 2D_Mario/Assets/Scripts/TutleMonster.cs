@@ -24,12 +24,16 @@ public class TutleMonster : MonoBehaviour
 
     bool bIsDeath = false;
     bool bIsDoubleDeath = false;
+
+    AudioSource audioSource;
+    public AudioClip audioMonsterDead;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         Invoke("MovePattern", 3);
         canvas = GameObject.Find("Canvas");
     }
@@ -175,7 +179,10 @@ public class TutleMonster : MonoBehaviour
 
     public void OnDamaged()
     {
-        if(!bIsDeath)
+        audioSource.clip = audioMonsterDead;
+        audioSource.Play();
+
+        if (!bIsDeath)
         {
             GameManager.Instance.StageScore += 200;
         }
@@ -205,7 +212,9 @@ public class TutleMonster : MonoBehaviour
     {
         GameManager.Instance.StageScore += 200;
 
-        Debug.Log("Second");
+        audioSource.clip = audioMonsterDead;
+        audioSource.Play();
+
         bIsDoubleDeath = true;
         if (position.x > gameObject.transform.position.x)
         {

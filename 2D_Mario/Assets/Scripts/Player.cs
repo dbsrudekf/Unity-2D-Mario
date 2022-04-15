@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public AudioClip audioFlag;
     public AudioClip audioItem;
     public AudioClip audioFireItem;
+    public AudioClip audioPowerDown;
+    public AudioClip audioMarioDead;
 
 
     void PlayerSound(string Action)
@@ -53,6 +55,12 @@ public class Player : MonoBehaviour
                 break;
             case "FireItem":
                 audioSource.clip = audioFireItem;
+                break;
+            case "PowerDown":
+                audioSource.clip = audioPowerDown;
+                break;
+            case "MarioDead":
+                audioSource.clip = audioMarioDead;
                 break;
 
 
@@ -276,6 +284,7 @@ public class Player : MonoBehaviour
                 if(!bIsOverPower)
                 {
                     OnDamaged();
+                    PlayerSound("PowerDown");
                 }
             }
             
@@ -291,6 +300,7 @@ public class Player : MonoBehaviour
                 if (!bIsOverPower)
                 {
                     OnDamaged();
+                    PlayerSound("PowerDown");
                 }
             }
 
@@ -301,6 +311,7 @@ public class Player : MonoBehaviour
             if (!bIsOverPower)
             {
                 OnDamaged();
+                PlayerSound("PowerDown");
             }
         }
 
@@ -309,6 +320,7 @@ public class Player : MonoBehaviour
             if (!bIsOverPower)
             {
                 OnDamaged();
+                PlayerSound("PowerDown");
                 Destroy(collision.gameObject);
             }
         }
@@ -405,6 +417,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                PlayerSound("MarioDead");
                 anim.SetBool("IsDeath", true);
                 rRigidbody.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
                 BoxCollider.enabled = false;

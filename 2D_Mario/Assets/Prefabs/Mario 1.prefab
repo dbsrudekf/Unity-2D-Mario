@@ -107,6 +107,9 @@ MonoBehaviour:
   audioFlag: {fileID: 8300000, guid: 3b6cbe5247f63304dad048bac1e34901, type: 3}
   audioItem: {fileID: 8300000, guid: 8effddeafe080f441ab8f19d70d4de16, type: 3}
   audioFireItem: {fileID: 8300000, guid: ffee79a24418488498fef846b2d59861, type: 3}
+  audioPowerDown: {fileID: 8300000, guid: 12ea326375e52fa4dab7fe12da972f76, type: 3}
+  audioMarioDead: {fileID: 8300000, guid: 072b416754a88084db3294afb7171b82, type: 3}
+  audioKick: {fileID: 8300000, guid: 2f9866f3632292d4588510ed41adc33f, type: 3}
 --- !u!50 &979289220748934902
 Rigidbody2D:
   serializedVersion: 4
@@ -185,7 +188,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
